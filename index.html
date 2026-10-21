@@ -162,6 +162,7 @@ section{position:relative}
 .about-pics figure{position:absolute;overflow:hidden;border-radius:20px;border:1px solid var(--line)}
 .about-pics img{width:100%;height:100%;object-fit:cover}
 .pic-a{left:0;top:0;width:62%;height:70%}
+.pic-a img{object-position:left 60%}
 .pic-b{right:0;bottom:0;width:50%;height:62%;box-shadow:-20px -20px 0 var(--bg)}
 .user-tag{position:absolute;left:0;bottom:0;width:46%;display:flex;flex-direction:column;gap:10px}
 .user-icons{display:flex;gap:8px}
@@ -178,36 +179,47 @@ section{position:relative}
 .story-btn:hover{background:var(--p);transform:translateY(-2px)}
 .story-btn svg{width:16px;height:16px}
 
-/* mi historia */
-.story{width:min(760px,calc(100% - 32px));max-height:calc(100% - 48px);margin:auto;padding:0;border:1px solid var(--line);border-radius:22px;background:var(--bg2);color:var(--white);overflow:auto}
-.story::backdrop{background:rgba(5,3,10,.78);backdrop-filter:blur(4px)}
-.story-head{position:sticky;top:0;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:28px 32px 20px;background:var(--bg2);border-bottom:1px solid var(--line)}
-.story-head h2{font:400 clamp(34px,5vw,48px)/1 var(--f-big);text-transform:uppercase}
-.story-close{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--white);font-size:22px;line-height:1;cursor:pointer}
+/* mi historia: pantalla completa por capítulos */
+.story{width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:var(--bg);color:var(--white);overflow-y:auto;overflow-x:hidden}
+.story[open]{animation:storyIn .35s ease}
+@keyframes storyIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.story::backdrop{background:rgba(5,3,10,.85)}
+.story-bar{position:sticky;top:0;z-index:3;background:rgba(10,10,12,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.story-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.story-close{flex:none;display:inline-flex;align-items:center;gap:10px;height:42px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--white);font:600 14px/1 var(--f-body);cursor:pointer;transition:border-color .2s}
 .story-close:hover{border-color:var(--p)}
-.timeline{list-style:none;padding:28px 32px 36px;position:relative}
-.timeline li{position:relative;padding:0 0 26px 34px}
-.timeline li:last-child{padding-bottom:0}
-.timeline li::before{content:"";position:absolute;left:5px;top:22px;bottom:-4px;width:2px;background:linear-gradient(var(--p),rgba(155,48,255,.15))}
-.timeline li:last-child::before{display:none}
-.timeline li::after{content:"";position:absolute;left:0;top:5px;width:12px;height:12px;border-radius:50%;background:var(--p);box-shadow:0 0 0 5px var(--p-soft)}
-.timeline .mono{color:var(--p);display:block;margin-bottom:4px}
-.timeline h3{font:400 24px/1.1 var(--f-big);letter-spacing:.02em;text-transform:uppercase;margin-bottom:6px}
-.timeline p{color:#cfcad8;font-size:15px}
-
-/* álbum */
-.album{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.shot{margin:0;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.story-close svg{width:16px;height:16px}
+.story-hero{position:relative;padding:70px 0 40px;overflow:hidden;isolation:isolate}
+.story-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(115deg,transparent 40%,rgba(122,31,224,.14) 40%,rgba(122,31,224,.14) 54%,transparent 54%),
+  linear-gradient(65deg,transparent 50%,rgba(60,13,120,.3) 50%,rgba(60,13,120,.3) 64%,transparent 64%)}
+.story-ghost{font:400 clamp(70px,14vw,200px)/.85 var(--f-big);text-transform:uppercase;background:linear-gradient(180deg,#a43dff,#7a1fe0 60%,rgba(60,13,120,.3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.story-intro{max-width:560px;margin-top:22px;font-size:18px;color:#d9d4e2}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.chips a{padding:8px 13px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--muted);transition:border-color .2s,color .2s}
+.chips a:hover{border-color:var(--p);color:var(--white)}
+.ch{display:grid;grid-template-columns:200px 1fr;gap:44px;padding:64px 0;border-top:1px solid var(--line);scroll-margin-top:68px}
+.ch-num{display:block;font:400 120px/.8 var(--f-big);color:transparent;-webkit-text-stroke:1.5px var(--p)}
+.ch-age{display:inline-block;margin-top:14px;padding:6px 10px;border-radius:8px;background:var(--p-soft);color:var(--p)}
+.ch-body{display:grid;grid-template-columns:1fr auto;gap:20px 44px;align-items:start}
+.ch-body h3{font:400 clamp(36px,4vw,56px)/.95 var(--f-big);text-transform:uppercase;grid-column:1}
+.ch-body p{grid-column:1;max-width:580px;font-size:17px;color:#cfcad8}
+.ch-body p strong{color:var(--white)}
+.ch-ico{grid-column:2;grid-row:1/span 2;width:150px;height:150px;border-radius:28px;display:grid;place-items:center;background:linear-gradient(150deg,var(--p2),var(--p-deep));box-shadow:0 24px 60px -24px rgba(155,48,255,.7)}
+.ch-ico svg{width:64px;height:64px;color:#fff}
+.ch-media{grid-column:1/-1}
+.designs{display:grid;grid-template-columns:.75fr 1.25fr;gap:12px;margin-top:6px}
+.designs img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
+.designs .stack-d{display:grid;gap:12px;align-content:start}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gal.two{grid-template-columns:1.5fr 1fr}
+.shot{margin:0;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
 .shot img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.shot.wide{grid-column:span 2}
-.shot.wide img{aspect-ratio:16/9;object-position:center 40%}
-.shot.tall{grid-row:span 2}
-.shot.tall img{aspect-ratio:auto;flex:1;min-height:0;height:100%;object-position:center 25%}
-.shot figcaption{padding:14px 18px 16px;font-size:14px;color:#cfcad8}
+.gal.two .shot img{aspect-ratio:auto;height:100%;min-height:0;flex:1;object-position:center 30%}
+.shot figcaption{padding:12px 16px 14px;font-size:14px;color:#cfcad8}
 .shot figcaption b{display:block;color:var(--white);font-size:15px;margin-bottom:2px}
-.designs{display:grid;gap:10px;margin-top:12px}
-.designs img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}
-.designs img.logo-d{width:min(100%,340px)}
+.story-end{padding:80px 0 90px;border-top:1px solid var(--line);text-align:center}
+.story-end blockquote{max-width:760px;margin:0 auto 30px;font:400 clamp(38px,5vw,64px)/1 var(--f-big);text-transform:uppercase}
 
 /* contacto */
 .contact{position:relative;overflow:hidden;background:var(--bg2);border-top:1px solid var(--line)}
@@ -256,9 +268,11 @@ section{position:relative}
   .projects{grid-template-columns:1fr}
   .head-bot{display:none}
   .about{grid-template-columns:1fr}
-  .album{grid-template-columns:1fr 1fr}
-  .shot.tall{grid-row:auto}
-  .shot.tall img{aspect-ratio:4/3;height:auto}
+  .ch{grid-template-columns:1fr;gap:18px;padding:48px 0}
+  .ch-side{display:flex;align-items:center;gap:16px}
+  .ch-num{font-size:76px}
+  .ch-age{margin-top:0}
+  .gal{grid-template-columns:1fr 1fr}
   .about-pics{height:540px}
   .contact .wrap{grid-template-columns:1fr}
   .sec{padding:84px 0}
@@ -278,18 +292,23 @@ section{position:relative}
   .stat strong{font-size:30px}
   .stat span{font-size:10px;letter-spacing:.08em}
   .sec-head{flex-direction:column;align-items:flex-start}
-  .stack,.grid3,.album{grid-template-columns:1fr}
-  .shot.wide{grid-column:auto}
-  .shot.wide img{aspect-ratio:4/3}
+  .stack,.grid3{grid-template-columns:1fr}
   .cell{border-right:0;border-bottom:1px solid var(--line);padding:28px 22px}
   .proj-media{height:280px}
   .proj-body{padding:24px 20px 22px}
   .proj-title{font-size:34px}
   .proj-cta{padding:20px}
   .about-pics{height:470px}
-  .story-head{padding:22px 20px 16px}
-  .timeline{padding:22px 20px 28px}
   .story-btn{padding:10px 14px;font-size:13px}
+  .story-bar .wrap{height:60px}
+  .story-hero{padding:44px 0 28px}
+  .story-intro{font-size:16px}
+  .ch-body{grid-template-columns:1fr}
+  .ch-body h3,.ch-body p{grid-column:1}
+  .ch-ico{grid-column:1;grid-row:auto;width:88px;height:88px;border-radius:20px;order:-1}
+  .ch-ico svg{width:40px;height:40px}
+  .gal,.gal.two,.designs{grid-template-columns:1fr}
+  .gal.two .shot img{aspect-ratio:4/3;height:auto}
   .user-name{font-size:21px}
   .links{margin-top:120px}
   .contact-bot{right:14px;bottom:calc(100% - 4px);height:150px}
@@ -317,7 +336,7 @@ section{position:relative}
       <a href="#stack">Stack</a>
       <a href="#trayectoria">Trayectoria</a>
       <a href="#sobre-mi">Sobre mí</a>
-      <a href="#album">Álbum</a>
+      <a href="#historia" data-story>Mi historia</a>
       <a href="#contacto">Contacto</a>
     </nav>
     <div class="status mono"><i></i>UAEH · Hidalgo</div>
@@ -329,7 +348,7 @@ section{position:relative}
   <a href="#stack">Stack</a>
   <a href="#trayectoria">Trayectoria</a>
   <a href="#sobre-mi">Sobre mí</a>
-  <a href="#album">Álbum</a>
+  <a href="#historia" data-story>Mi historia</a>
   <a href="#contacto">Contacto</a>
 </nav>
 
@@ -510,34 +529,11 @@ section{position:relative}
   </div>
 </section>
 
-<!-- ÁLBUM -->
-<section class="sec" id="album" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <div>
-        <p class="kicker mono">04 · Álbum</p>
-        <h2 class="h2">En <span class="accent">campo</span> y en el <span class="accent">laboratorio</span></h2>
-      </div>
-      <p>Proyectos, prácticas y el equipo de telecomunicaciones con el que he trabajado.</p>
-    </div>
-    <div class="album">
-      <figure class="shot wide rv"><img src="img/submarino-lora.jpg" alt="Equipo con el submarino RC en una exposición" loading="lazy">
-        <figcaption><b>Submarino RC con LoRa</b>Exposición de proyecto en equipo. Mi parte: integrar el GPS para su geolocalización.</figcaption></figure>
-      <figure class="shot tall rv"><img src="img/gps-autobus.jpg" alt="Gabriel instalando un GPS en un autobús" loading="lazy">
-        <figcaption><b>GPS en autobuses de la UAEH</b>Instalación en el tablero eléctrico de la unidad.</figcaption></figure>
-      <figure class="shot rv"><img src="img/osciloscopio.jpg" alt="Osciloscopio Rohde &amp; Schwarz RTE 1102 midiendo señales" loading="lazy">
-        <figcaption><b>Osciloscopio R&amp;S RTE 1102</b>1 GHz · 5 GSa/s, sobre un analizador de señales R&amp;S FSV.</figcaption></figure>
-      <figure class="shot rv"><img src="img/analizador-espectro.jpg" alt="Analizador de espectro portátil Rohde &amp; Schwarz FSH4" loading="lazy">
-        <figcaption><b>Analizador de espectro R&amp;S FSH4</b>Portátil, de 100 kHz a 3.6 GHz.</figcaption></figure>
-    </div>
-  </div>
-</section>
-
 <!-- CONTACTO -->
 <section class="contact" id="contacto">
   <div class="wrap">
     <div class="rv">
-      <p class="kicker mono">05 · Contacto</p>
+      <p class="kicker mono">04 · Contacto</p>
       <h2 class="big-cta">Encuéntrame<span class="accent">en línea</span></h2>
     </div>
     <div class="links rv">
@@ -560,28 +556,110 @@ section{position:relative}
 
 
 <dialog class="story" id="story" aria-labelledby="storyTitle">
-  <div class="story-head">
-    <div>
-      <p class="kicker mono" style="color:var(--p);margin-bottom:8px">Por qué me gusta la tecnología</p>
-      <h2 id="storyTitle">Mi historia</h2>
+  <div class="story-bar">
+    <div class="wrap">
+      <a class="brand" href="#ch1"><img src="img/logo.png" alt=""><span>GABGARI</span></a>
+      <button class="story-close" type="button" id="storyClose">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Volver</button>
     </div>
-    <button class="story-close" type="button" id="storyClose" aria-label="Cerrar">×</button>
   </div>
-  <ol class="timeline">
-    <li><span class="mono">4–5 años</span><h3>El aula de mi mamá</h3><p>Me llevaba a sus cursos de computación porque no tenía con quién dejarme. El profe me prestaba una máquina libre y yo pasaba horas en Paint. Ahí empezó todo.</p></li>
-    <li><span class="mono">Siempre</span><h3>Desarmador oficial</h3><p>Quería saber cómo funcionaban mis juguetes… y casi siempre terminaban rotos.</p></li>
-    <li><span class="mono">10 años</span><h3>Internet en casa</h3><p>Descubrí todo lo que se podía hacer: juegos, descargas y uno que otro virus.</p></li>
-    <li><span class="mono">Primaria</span><h3>El técnico del salón</h3><p>Instalaba y configuraba juegos en el aula de cómputo para jugar con mis compañeros.</p></li>
-    <li><span class="mono">Secundaria</span><h3>Diseño</h3><p>Photoshop y Lightroom: banners, logos y headers.</p>
-      <div class="designs">
-        <img class="logo-d" src="img/diseno-casco.jpg" alt="Logo de casco con variantes de color" loading="lazy">
-        <img src="img/diseno-header-zxur.jpg" alt="Header morado con tipografía gótica" loading="lazy">
-        <img src="img/diseno-header-gab.jpg" alt="Header GAB en rojo y negro" loading="lazy">
-        <img src="img/diseno-header-coc.jpg" alt="Header con personajes de Clash of Clans" loading="lazy">
-      </div></li>
-    <li><span class="mono">Preparatoria</span><h3>La decisión</h3><p>Llegó la pandemia y la orientación vocacional me confirmó que lo mío era la ingeniería.</p></li>
-    <li><span class="mono">UAEH</span><h3>Telecomunicaciones</h3><p>Programación, fibra óptica, antenas, redes y procesamiento digital de señales, más conferencias de IA y ciberseguridad. Cambió mi forma de ver el mundo.</p></li>
-  </ol>
+  <header class="story-hero">
+    <div class="wrap">
+      <p class="kicker mono" style="color:var(--p)">Por qué me gusta la tecnología</p>
+      <h2 class="story-ghost" id="storyTitle">Mi historia</h2>
+      <p class="story-intro">De pasar horas en Paint a medir señales con un analizador de espectro. Ocho momentos que me trajeron hasta aquí.</p>
+      <nav class="chips" aria-label="Capítulos">
+        <a href="#ch1">01 · Paint</a><a href="#ch2">02 · Juguetes</a><a href="#ch3">03 · Internet</a><a href="#ch4">04 · El salón</a>
+        <a href="#ch5">05 · Diseño</a><a href="#ch6">06 · La decisión</a><a href="#ch7">07 · UAEH</a><a href="#ch8">08 · Hoy</a>
+      </nav>
+    </div>
+  </header>
+  <div class="wrap">
+    <article class="ch" id="ch1">
+      <div class="ch-side"><span class="ch-num">01</span><span class="ch-age mono">4–5 años</span></div>
+      <div class="ch-body">
+        <h3>El aula de mi mamá</h3>
+        <p>Me llevaba a sus cursos de computación porque no tenía con quién dejarme. El profe me prestaba una máquina cuando alguien faltaba y yo pasaba horas en Paint, preguntándome cómo funcionaba una PC. <strong>Ahí empezó todo.</strong></p>
+        <div class="ch-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M14.5 7.5l-5 5M9 13l-1 1"/></svg></div>
+      </div>
+    </article>
+    <article class="ch" id="ch2">
+      <div class="ch-side"><span class="ch-num">02</span><span class="ch-age mono">Siempre</span></div>
+      <div class="ch-body">
+        <h3>Desarmador oficial</h3>
+        <p>Quería saber cómo funcionaban mis juguetes por dentro… y casi siempre terminaban rotos.</p>
+        <div class="ch-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg></div>
+      </div>
+    </article>
+    <article class="ch" id="ch3">
+      <div class="ch-side"><span class="ch-num">03</span><span class="ch-age mono">10 años</span></div>
+      <div class="ch-body">
+        <h3>Internet en casa</h3>
+        <p>La primera vez que tuve internet me maravillé con todo lo que se podía hacer: juegos, descargas y uno que otro virus.</p>
+        <div class="ch-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+      </div>
+    </article>
+    <article class="ch" id="ch4">
+      <div class="ch-side"><span class="ch-num">04</span><span class="ch-age mono">Primaria</span></div>
+      <div class="ch-body">
+        <h3>El técnico del salón</h3>
+        <p>Instalaba y configuraba juegos en el aula de cómputo para que pudiéramos jugar todos juntos.</p>
+        <div class="ch-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6.5 7h11a4 4 0 0 1 3.9 3.2l1 5.3a2.6 2.6 0 0 1-4.6 2.1L16 15.5H8l-1.8 2.1a2.6 2.6 0 0 1-4.6-2.1l1-5.3A4 4 0 0 1 6.5 7z"/><path d="M8 10v3M6.5 11.5h3"/><circle cx="15.5" cy="10.5" r=".7" fill="currentColor"/><circle cx="17" cy="12.5" r=".7" fill="currentColor"/></svg></div>
+      </div>
+    </article>
+    <article class="ch" id="ch5">
+      <div class="ch-side"><span class="ch-num">05</span><span class="ch-age mono">Secundaria</span></div>
+      <div class="ch-body">
+        <h3>Diseño</h3>
+        <p>Photoshop y Lightroom: banners, logos y headers. Ahí aprendí a cuidar cómo se ve lo que hago.</p>
+        <div class="ch-media designs">
+          <img src="img/diseno-casco.jpg" alt="Logo de casco con la franja GAB" loading="lazy">
+          <div class="stack-d">
+            <img src="img/diseno-header-zxur.jpg" alt="Header morado con tipografía gótica" loading="lazy">
+            <img src="img/diseno-header-gab.jpg" alt="Header GAB en rojo y negro" loading="lazy">
+            <img src="img/diseno-header-coc.jpg" alt="Header con personajes de Clash of Clans" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </article>
+    <article class="ch" id="ch6">
+      <div class="ch-side"><span class="ch-num">06</span><span class="ch-age mono">Preparatoria</span></div>
+      <div class="ch-body">
+        <h3>La decisión</h3>
+        <p>Llegó la pandemia y la orientación vocacional me confirmó lo que ya sospechaba: lo mío era la ingeniería.</p>
+        <div class="ch-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></div>
+      </div>
+    </article>
+    <article class="ch" id="ch7">
+      <div class="ch-side"><span class="ch-num">07</span><span class="ch-age mono">UAEH</span></div>
+      <div class="ch-body">
+        <h3>Telecomunicaciones</h3>
+        <p>Programación, teoría de telecomunicaciones, circuitos, medios de transmisión, antenas, fibra óptica, redes y procesamiento digital de señales, más conferencias de IA y ciberseguridad. <strong>Cambió mi forma de ver el mundo.</strong></p>
+        <div class="ch-media gal">
+          <figure class="shot"><img src="img/osciloscopio.jpg" alt="Osciloscopio Rohde &amp; Schwarz RTE 1102 midiendo señales" loading="lazy"><figcaption><b>Osciloscopio R&amp;S RTE 1102</b>1 GHz · 5 GSa/s, sobre un analizador de señales R&amp;S FSV.</figcaption></figure>
+          <figure class="shot"><img src="img/analizador-espectro.jpg" alt="Analizador de espectro portátil Rohde &amp; Schwarz FSH4" loading="lazy"><figcaption><b>Analizador de espectro R&amp;S FSH4</b>Portátil, de 100 kHz a 3.6 GHz.</figcaption></figure>
+          <figure class="shot"><img src="img/campus.jpg" alt="Gabriel en el campus" loading="lazy"><figcaption><b>Entre clases</b>Cada día, algo nuevo.</figcaption></figure>
+        </div>
+      </div>
+    </article>
+    <article class="ch" id="ch8">
+      <div class="ch-side"><span class="ch-num">08</span><span class="ch-age mono">Hoy</span></div>
+      <div class="ch-body">
+        <h3>Llevarlo al mundo real</h3>
+        <p>De la teoría a proyectos que funcionan fuera del aula: en equipo, en campo y con usuarios reales.</p>
+        <div class="ch-media gal two">
+          <figure class="shot"><img src="img/submarino-lora.jpg" alt="Equipo con el submarino RC en una exposición" loading="lazy"><figcaption><b>Submarino RC con LoRa</b>Proyecto en equipo. Mi parte: integrar el GPS para su geolocalización.</figcaption></figure>
+          <figure class="shot"><img src="img/gps-autobus.jpg" alt="Gabriel instalando un GPS en un autobús" loading="lazy"><figcaption><b>GPS en autobuses de la UAEH</b>Instalación en el tablero eléctrico de la unidad.</figcaption></figure>
+        </div>
+      </div>
+    </article>
+  </div>
+  <footer class="story-end">
+    <div class="wrap">
+      <blockquote>Cada día se debe aprender <span class="accent">algo nuevo.</span></blockquote>
+      <button class="btn btn-p" type="button" id="storyBack">Volver al portafolio</button>
+    </div>
+  </footer>
 </dialog>
 
 <script>
@@ -601,9 +679,14 @@ section{position:relative}
   });
 
   var story=document.getElementById('story');
-  document.getElementById('storyOpen').addEventListener('click',function(){story.showModal()});
-  document.getElementById('storyClose').addEventListener('click',function(){story.close()});
-  story.addEventListener('click',function(e){if(e.target===story)story.close()});
+  function openStory(e){if(e)e.preventDefault();document.body.classList.remove('nav-open');story.showModal();story.scrollTop=0}
+  document.getElementById('storyOpen').addEventListener('click',openStory);
+  document.querySelectorAll('[data-story]').forEach(function(a){a.addEventListener('click',openStory)});
+  ['storyClose','storyBack'].forEach(function(id){document.getElementById(id).addEventListener('click',function(){story.close()})});
+  // los capítulos se desplazan dentro del diálogo, no en la página
+  story.querySelectorAll('a[href^="#ch"]').forEach(function(a){
+    a.addEventListener('click',function(e){e.preventDefault();var t=story.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})});
+  });
 
   var els=document.querySelectorAll('.rv');
   if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
