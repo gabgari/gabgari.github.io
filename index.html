@@ -175,9 +175,13 @@ section{position:relative}
 .pub .mono{color:var(--p);margin-bottom:8px}
 .pub p{margin:0;font-size:14px;color:#e2ddea}
 
-.story-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;margin-top:4px;padding:11px 18px;border-radius:999px;border:1px solid var(--p);background:var(--p-soft);color:var(--white);font:600 14px/1 var(--f-body);cursor:pointer;transition:background .2s,transform .2s}
-.story-btn:hover{background:var(--p);transform:translateY(-2px)}
-.story-btn svg{width:16px;height:16px}
+/* botón "Mi historia": verde-amarillo fluorescente para que destaque sobre negro y morado */
+.story-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;margin-top:6px;padding:13px 22px;border-radius:999px;border:0;background:#c8ff1f;color:#0a0a0c;font:800 15px/1 var(--f-body);letter-spacing:.02em;text-transform:uppercase;cursor:pointer;box-shadow:0 0 0 0 rgba(200,255,31,.55),0 10px 30px -8px rgba(200,255,31,.6);animation:storyPulse 2.2s ease-out infinite;transition:transform .2s,background .2s}
+.story-btn:hover{background:#dbff5c;transform:translateY(-2px) scale(1.03)}
+.story-btn svg{width:18px;height:18px;transition:transform .2s}
+.story-btn:hover svg{transform:translateX(4px)}
+@keyframes storyPulse{0%{box-shadow:0 0 0 0 rgba(200,255,31,.55),0 10px 30px -8px rgba(200,255,31,.6)}70%{box-shadow:0 0 0 14px rgba(200,255,31,0),0 10px 30px -8px rgba(200,255,31,.6)}100%{box-shadow:0 0 0 0 rgba(200,255,31,0),0 10px 30px -8px rgba(200,255,31,.6)}}
+.nav a[data-story]{color:#c8ff1f}
 
 /* mi historia: pantalla completa por capítulos */
 .story{width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:var(--bg);color:var(--white);overflow-y:auto;overflow-x:hidden}
