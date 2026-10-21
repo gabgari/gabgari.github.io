@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GABGARI · Portafolio</title>
+<meta name="description" content="Portafolio de A. Gabriel García Rivera (gabgari): estudiante de Ingeniería en Telecomunicaciones (UAEH); proyectos de apps con IA e IoT.">
+<meta name="theme-color" content="#0a0a0c">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0c; --bg2:#111114; --card:#151519; --line:rgba(255,255,255,.09);
+  --white:#f4f2f8; --muted:#a19cab; --dim:#6d6877;
+  --p:#9b30ff; --p2:#7a1fe0; --p-deep:#3c0d78; --p-soft:rgba(155,48,255,.14);
+  --f-big:'Anton',Impact,sans-serif; --f-body:'Inter',system-ui,sans-serif; --f-mono:'JetBrains Mono',ui-monospace,monospace;
+  --wrap:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font:400 16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px}
+.mono{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.accent{color:var(--p)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+
+/* ---------- barra superior ---------- */
+.top{position:fixed;inset:0 0 auto;z-index:50;transition:background .25s,border-color .25s;border-bottom:1px solid transparent}
+.top.solid{background:rgba(10,10,12,.92);backdrop-filter:blur(10px);border-color:var(--line)}
+.top .wrap{display:flex;align-items:center;gap:28px;height:76px}
+.brand{display:flex;align-items:center;gap:12px;font:400 22px/1 var(--f-big);letter-spacing:.06em}
+.brand img{width:38px;height:38px;border-radius:50%}
+.nav{display:flex;gap:30px;margin-left:auto}
+.nav a{font-size:14px;font-weight:500;color:var(--muted);transition:color .2s}
+.nav a:hover{color:var(--white)}
+.status{display:flex;align-items:center;gap:8px;color:var(--muted)}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--p);box-shadow:0 0 0 4px var(--p-soft)}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:none;color:var(--white);cursor:pointer}
+.burger span{display:block;width:18px;height:2px;margin:4px auto;background:currentColor;transition:transform .2s,opacity .2s}
+.nav-open .burger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-open .burger span:nth-child(2){opacity:0}
+.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mobile-menu{position:fixed;inset:76px 0 auto;z-index:49;background:rgba(10,10,12,.97);border-bottom:1px solid var(--line);padding:8px 20px 24px;display:none}
+.nav-open .mobile-menu{display:block}
+.mobile-menu a{display:block;padding:16px 4px;font-weight:600;border-bottom:1px solid var(--line)}
+
+/* ---------- hero (idea 1) ---------- */
+.hero{position:relative;min-height:100vh;padding-top:76px;overflow:hidden;isolation:isolate}
+.hero::before{ /* diagonales tipo "V" (idea 2) */
+  content:"";position:absolute;inset:0;z-index:-3;
+  background:
+    linear-gradient(115deg,transparent 38%,rgba(122,31,224,.16) 38%,rgba(122,31,224,.16) 52%,transparent 52%),
+    linear-gradient(65deg,transparent 48%,rgba(60,13,120,.35) 48%,rgba(60,13,120,.35) 62%,transparent 62%);
+}
+.hero::after{content:"";position:absolute;inset:auto 0 0;height:220px;z-index:1;background:linear-gradient(transparent,var(--bg));pointer-events:none}
+.ghost{
+  position:absolute;z-index:-2;left:50%;top:92px;transform:translateX(-50%);
+  font:400 clamp(110px,22.5vw,330px)/.82 var(--f-big);letter-spacing:-.01em;white-space:nowrap;
+  color:var(--p2);opacity:.92;user-select:none;
+  background:linear-gradient(180deg,#a43dff 0%,#7a1fe0 55%,rgba(60,13,120,.25) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-photo{position:absolute;z-index:-1;left:50%;bottom:0;transform:translateX(-50%);height:min(88vh,860px);width:auto;max-width:none;filter:grayscale(.15) contrast(1.05)}
+.hero-photo-glow{position:absolute;z-index:-2;left:50%;bottom:-10%;transform:translateX(-50%);width:640px;height:640px;border-radius:50%;background:radial-gradient(closest-side,rgba(155,48,255,.35),transparent)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;align-items:end;min-height:calc(100vh - 76px);padding-bottom:72px}
+.hello{font:500 clamp(28px,3vw,40px)/1 var(--f-body);font-style:italic;margin-bottom:10px}
+.name{font:400 clamp(54px,6.6vw,104px)/.9 var(--f-big);text-transform:uppercase;letter-spacing:.005em;text-shadow:0 4px 30px rgba(0,0,0,.55)}
+.role{margin:18px 0 14px;font:700 15px/1.3 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--p)}
+.lead{max-width:400px;color:#cfcad8;font-size:15px;text-shadow:0 2px 12px rgba(0,0,0,.8)}
+.where{display:flex;align-items:center;gap:10px;margin-top:22px;color:var(--muted)}
+.where svg{width:16px;height:16px;color:var(--p)}
+.hero-right{justify-self:end;display:flex;flex-direction:column;gap:22px;align-items:flex-end}
+.hero-quote{display:flex;gap:12px;max-width:230px;font-size:14px;color:#d9d4e2;text-shadow:0 2px 10px rgba(0,0,0,.9)}
+.hero-quote b{flex:none;width:22px;height:22px;border-radius:50%;border:1px solid var(--p);display:grid;place-items:center;color:var(--p);font-size:12px}
+.stats{display:grid;gap:0;min-width:200px}
+.stat{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.stat:last-child{border:0}
+.stat strong{font:400 46px/1 var(--f-big);color:var(--p);min-width:64px}
+.stat span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.4}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font-weight:600;font-size:14px;transition:transform .2s,background .2s,border-color .2s}
+.btn svg{width:16px;height:16px}
+.btn-p{background:var(--p);color:#fff}
+.btn-p:hover{background:#ab4dff;transform:translateY(-2px)}
+.btn-o{border:1px solid rgba(255,255,255,.25)}
+.btn-o:hover{border-color:var(--p);transform:translateY(-2px)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+
+/* ---------- secciones ---------- */
+section{position:relative}
+.sec{padding:110px 0}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:44px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.h2{font:700 clamp(30px,3.6vw,46px)/1.05 var(--f-body);letter-spacing:-.02em}
+.kicker{color:var(--p);margin-bottom:12px}
+.sec-head p{max-width:420px;color:var(--muted);font-size:15px}
+
+/* proyectos */
+.projects{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.proj{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:border-color .25s,transform .25s}
+.proj:hover{border-color:rgba(155,48,255,.55);transform:translateY(-4px)}
+.proj-media{position:relative;height:340px;overflow:hidden;background:radial-gradient(circle at 50% 70%,rgba(155,48,255,.32),transparent 62%),#0d0d10}
+.proj-media img{position:absolute;left:50%;transform:translateX(-50%)}
+.proj-docente .proj-media img{top:50%;transform:translate(-50%,-50%);height:90%;width:auto}
+.proj-shadow .proj-media img{top:50%;transform:translate(-50%,-46%);width:auto;height:78%;max-width:86%;object-fit:contain}
+.proj-num{position:absolute;top:22px;left:24px;font:400 64px/1 var(--f-big);color:rgba(255,255,255,.08)}
+.proj-year{position:absolute;top:26px;right:24px;color:var(--muted)}
+.proj-body{display:flex;flex-direction:column;gap:14px;padding:30px 30px 32px;flex:1}
+.proj-title{font:400 40px/1 var(--f-big);letter-spacing:.01em;text-transform:uppercase}
+.proj-sub{color:var(--p);font-weight:600;font-size:14px}
+.proj-body p{color:var(--muted);font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{padding:6px 11px;border:1px solid var(--line);border-radius:999px;font-size:12px;color:#cfcad8}
+.proj-cta{
+  margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:22px 26px;border-radius:16px;background:var(--p);color:#fff;
+  font:400 clamp(20px,2vw,26px)/1 var(--f-big);letter-spacing:.04em;text-transform:uppercase;
+  transition:background .2s,box-shadow .2s;box-shadow:0 14px 40px -14px rgba(155,48,255,.8)
+}
+.proj-cta:hover{background:#ab4dff;box-shadow:0 18px 50px -12px rgba(155,48,255,.95)}
+.proj-cta svg{width:30px;height:30px;flex:none;transition:transform .2s}
+.proj-cta:hover svg{transform:translateX(6px)}
+.sec-head .kicker,.about-text .kicker{color:var(--p)}
+.head-bot{flex:none;height:150px;margin:0 0 -20px auto;pointer-events:none}
+
+/* fullstack */
+.stack{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.layer{padding:26px 24px;background:var(--card);border:1px solid var(--line);border-radius:18px}
+.layer-ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--p);margin-bottom:18px}
+.layer-ico svg{width:22px;height:22px;color:#fff}
+.layer h3{font-size:18px;margin-bottom:6px}
+.layer p{font-size:14px;color:var(--muted);margin-bottom:14px}
+
+/* educación + proceso + frase (rejilla inferior de idea 1) */
+.grid3{display:grid;grid-template-columns:1.05fr 1fr .8fr;border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.cell{padding:36px 32px;border-right:1px solid var(--line)}
+.cell:last-child{border:0}
+.cell h3{font:400 26px/1 var(--f-big);letter-spacing:.03em;text-transform:uppercase;margin-bottom:26px}
+.edu-item{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.edu-item:last-of-type{border:0}
+.edu-item b{color:var(--p);font-size:12px;letter-spacing:.12em;text-transform:uppercase;grid-column:1/-1}
+.edu-item strong{font-size:15px}
+.edu-item em{font-style:normal;color:var(--dim);font-size:13px;white-space:nowrap}
+.edu-item span{color:var(--muted);font-size:14px;grid-column:1/-1}
+.steps{list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:4px 14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.steps li:last-child{border:0}
+.steps li::before{content:"0" counter(s);grid-row:span 2;font:400 22px/1 var(--f-big);color:var(--p);padding-top:3px}
+.steps strong{font-size:14px;letter-spacing:.1em;text-transform:uppercase}
+.steps span{font-size:14px;color:var(--muted)}
+.quote-cell{position:relative;background:linear-gradient(160deg,var(--p2),var(--p-deep));display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.quote-cell::after{content:"";position:absolute;inset:0;background:url(img/museo.jpg) center 30%/cover;opacity:.22;mix-blend-mode:luminosity}
+.quote-cell>*{position:relative;z-index:1}
+.quote-mark{font:400 80px/.6 var(--f-big);opacity:.6}
+.quote-cell blockquote{font:600 22px/1.3 var(--f-body);margin:22px 0}
+.quote-cell .sign{font:italic 500 18px/1 var(--f-body);opacity:.9}
+
+/* sobre mí */
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.about-pics{position:relative;height:600px}
+.about-pics figure{position:absolute;overflow:hidden;border-radius:20px;border:1px solid var(--line)}
+.about-pics img{width:100%;height:100%;object-fit:cover}
+.pic-a{left:0;top:0;width:62%;height:70%}
+.pic-b{right:0;bottom:0;width:50%;height:62%;box-shadow:-20px -20px 0 var(--bg)}
+.user-tag{position:absolute;left:0;bottom:0;width:46%;display:flex;flex-direction:column;gap:10px}
+.user-icons{display:flex;gap:8px}
+.user-icons span{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--p);color:var(--p)}
+.user-icons svg{width:16px;height:16px}
+.user-name{font:400 26px/1 var(--f-big);letter-spacing:.04em}
+.about-text p{color:#cfcad8;margin-bottom:16px}
+.about-text p strong{color:var(--white)}
+.pub{margin-top:26px;padding:22px 24px;border-left:3px solid var(--p);background:var(--p-soft);border-radius:0 14px 14px 0}
+.pub .mono{color:var(--p);margin-bottom:8px}
+.pub p{margin:0;font-size:14px;color:#e2ddea}
+
+.story-btn{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;margin-top:4px;padding:11px 18px;border-radius:999px;border:1px solid var(--p);background:var(--p-soft);color:var(--white);font:600 14px/1 var(--f-body);cursor:pointer;transition:background .2s,transform .2s}
+.story-btn:hover{background:var(--p);transform:translateY(-2px)}
+.story-btn svg{width:16px;height:16px}
+
+/* mi historia */
+.story{width:min(760px,calc(100% - 32px));max-height:calc(100% - 48px);margin:auto;padding:0;border:1px solid var(--line);border-radius:22px;background:var(--bg2);color:var(--white);overflow:auto}
+.story::backdrop{background:rgba(5,3,10,.78);backdrop-filter:blur(4px)}
+.story-head{position:sticky;top:0;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:28px 32px 20px;background:var(--bg2);border-bottom:1px solid var(--line)}
+.story-head h2{font:400 clamp(34px,5vw,48px)/1 var(--f-big);text-transform:uppercase}
+.story-close{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--white);font-size:22px;line-height:1;cursor:pointer}
+.story-close:hover{border-color:var(--p)}
+.timeline{list-style:none;padding:28px 32px 36px;position:relative}
+.timeline li{position:relative;padding:0 0 26px 34px}
+.timeline li:last-child{padding-bottom:0}
+.timeline li::before{content:"";position:absolute;left:5px;top:22px;bottom:-4px;width:2px;background:linear-gradient(var(--p),rgba(155,48,255,.15))}
+.timeline li:last-child::before{display:none}
+.timeline li::after{content:"";position:absolute;left:0;top:5px;width:12px;height:12px;border-radius:50%;background:var(--p);box-shadow:0 0 0 5px var(--p-soft)}
+.timeline .mono{color:var(--p);display:block;margin-bottom:4px}
+.timeline h3{font:400 24px/1.1 var(--f-big);letter-spacing:.02em;text-transform:uppercase;margin-bottom:6px}
+.timeline p{color:#cfcad8;font-size:15px}
+
+/* contacto */
+.contact{position:relative;overflow:hidden;background:var(--bg2);border-top:1px solid var(--line)}
+.contact .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;padding-top:96px;padding-bottom:96px}
+.big-cta{font:400 clamp(52px,7vw,110px)/.88 var(--f-big);text-transform:uppercase}
+.big-cta .accent{display:block}
+.contact-lead{margin:20px 0 0;max-width:430px;color:var(--muted)}
+.links{display:grid;gap:12px;position:relative;z-index:1}
+.link{display:flex;align-items:center;gap:16px;padding:18px 20px;background:var(--card);border:1px solid var(--line);border-radius:16px;transition:border-color .2s,transform .2s}
+.link:hover{border-color:var(--p);transform:translateX(4px)}
+.link-ico{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--p);color:var(--p)}
+.link-ico svg{width:20px;height:20px}
+.link small{display:block;color:var(--dim);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.link b{font-weight:600;font-size:15px;word-break:break-all}
+.contact-title{display:flex;align-items:flex-end;gap:18px}
+.contact-bot{flex:none;height:250px;width:auto;margin-bottom:-6px;pointer-events:none}
+
+/* entrada suave */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- responsivo ----------
+   >1180 escritorio · 901–1180 laptop chica · ≤900 tablet (hero apilado, hamburguesa) · ≤640 celular · ≤380 celular chico */
+@media (max-width:1180px){
+  .stack{grid-template-columns:1fr 1fr}
+  .grid3{grid-template-columns:1fr 1fr}
+  .quote-cell{grid-column:1/-1;border-top:1px solid var(--line)}
+  .cell:nth-child(2){border-right:0}
+  .head-bot{height:120px}
+}
+@media (max-width:900px){
+  .nav,.top .status{display:none}
+  .burger{display:block}
+  .hero{min-height:auto}
+  .hero .wrap{grid-template-columns:1fr;min-height:0;padding-top:430px;padding-bottom:40px;gap:30px}
+  .ghost{top:110px;font-size:24vw}
+  .hero-photo{height:520px;bottom:auto;top:96px}
+  .hero::after{top:440px;height:180px;bottom:auto}
+  .hero-photo-glow{top:120px;bottom:auto;width:460px;height:460px}
+  .hero-right{justify-self:stretch;align-items:stretch}
+  .hero-quote{display:none}
+  .stats{grid-template-columns:repeat(3,1fr);gap:12px}
+  .stat{flex-direction:column;align-items:flex-start;gap:6px;padding:16px;border:1px solid var(--line);border-radius:14px;background:rgba(21,21,25,.7)}
+  .stat:last-child{border:1px solid var(--line)}
+  .stat strong{font-size:36px}
+  .projects{grid-template-columns:1fr}
+  .head-bot{display:none}
+  .about{grid-template-columns:1fr}
+  .about-pics{height:540px}
+  .contact .wrap{grid-template-columns:1fr}
+  .sec{padding:84px 0}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .top .wrap{height:68px}
+  .mobile-menu{inset:68px 0 auto}
+  .hero{padding-top:68px}
+  .hero .wrap{padding-top:360px}
+  .hero-photo{height:430px;top:80px}
+  .hero::after{top:360px}
+  .ghost{top:100px;font-size:25vw}
+  .name{font-size:clamp(44px,13.5vw,64px)}
+  .stats{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .stat{padding:12px}
+  .stat strong{font-size:30px}
+  .stat span{font-size:10px;letter-spacing:.08em}
+  .sec-head{flex-direction:column;align-items:flex-start}
+  .stack,.grid3{grid-template-columns:1fr}
+  .cell{border-right:0;border-bottom:1px solid var(--line);padding:28px 22px}
+  .proj-media{height:280px}
+  .proj-body{padding:24px 20px 22px}
+  .proj-title{font-size:34px}
+  .proj-cta{padding:20px}
+  .about-pics{height:470px}
+  .story-head{padding:22px 20px 16px}
+  .timeline{padding:22px 20px 28px}
+  .story-btn{padding:10px 14px;font-size:13px}
+  .user-name{font-size:21px}
+  .contact-bot{height:170px}
+  .user-icons span{width:30px;height:30px}
+  .edu-item{grid-template-columns:1fr}
+  .edu-item em{grid-column:1/-1}
+}
+@media (max-width:380px){
+  .stats{grid-template-columns:1fr}
+  .stat{flex-direction:row;align-items:center}
+  .hero .wrap{padding-top:320px}
+  .hero-photo{height:380px}
+  .hero::after{top:320px}
+  .brand span{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a href="#inicio" class="brand"><img src="img/logo.png" alt="Logo gabgari"><span>GABGARI</span></a>
+    <nav class="nav">
+      <a href="#proyectos">Proyectos</a>
+      <a href="#stack">Stack</a>
+      <a href="#trayectoria">Trayectoria</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="status mono"><i></i>UAEH · Hidalgo</div>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#proyectos">Proyectos</a>
+  <a href="#stack">Stack</a>
+  <a href="#trayectoria">Trayectoria</a>
+  <a href="#sobre-mi">Sobre mí</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="ghost" aria-hidden="true">GABGARI</div>
+  <div class="hero-photo-glow" aria-hidden="true"></div>
+  <img class="hero-photo" src="img/yo.webp" alt="A. Gabriel García Rivera">
+  <div class="wrap">
+    <div class="hero-left">
+      <p class="hello">Hola, soy</p>
+      <h1 class="name">A. Gabriel<br>García Rivera</h1>
+      <p class="role">Estudiante Ing. Telecomunicaciones · UAEH</p>
+      <p class="lead">Construyo productos completos: apps móviles, backend con bases de datos e IA generativa, y hardware conectado que se ve en una pantalla.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-p" href="#proyectos">Ver proyectos
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-o" href="https://github.com/gabgari" target="_blank" rel="noopener">github.com/gabgari</a>
+      </div>
+      <div class="where mono">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        Hidalgo, México
+      </div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-quote"><b>↗</b>Del circuito a la nube: diseño, programo, pruebo con usuarios reales y documento.</p>
+      <div class="stats">
+        <div class="stat"><strong>2</strong><span>Productos<br>completos</span></div>
+        <div class="stat"><strong>1</strong><span>Artículo<br>publicado</span></div>
+        <div class="stat"><strong>7</strong><span>Usuarios<br>satisfechos</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section class="sec" id="proyectos">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="kicker mono">01 · Proyectos destacados</p>
+        <h2 class="h2">Lo que he <span class="accent">construido</span></h2>
+      </div>
+      <img class="head-bot" src="img/bot-senala.webp" alt="" aria-hidden="true" loading="lazy">
+      <p>Dos productos de punta a punta: interfaz, servidor, datos, IA y hardware.</p>
+    </div>
+
+    <div class="projects">
+      <article class="proj proj-docente rv">
+        <div class="proj-media">
+          <span class="proj-num">01</span><span class="proj-year mono">2026</span>
+          <img src="img/docente.webp" alt="App Docente en un teléfono" loading="lazy">
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">App Docente</h3>
+          <p class="proj-sub">App móvil de planeación didáctica con IA</p>
+          <p>Genera planeaciones alineadas a la NEM 2022 de la SEP, con un sistema RAG que cita libro y página. Grupos, pase de lista y chatbot pedagógico. La validaron 7 docentes en servicio.</p>
+          <div class="tags"><span>Flutter</span><span>Supabase</span><span>PostgreSQL · pgvector</span><span>Deno / TypeScript</span><span>Gemini API</span><span>RAG</span></div>
+          <a class="proj-cta" href="https://gabgari.github.io/APP-DOCENTE/" target="_blank" rel="noopener">Ver App Docente
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+
+      <article class="proj proj-shadow rv">
+        <div class="proj-media">
+          <span class="proj-num">02</span><span class="proj-year mono">2026</span>
+          <img src="img/shadowbot.webp" alt="Vehículo SHADOW BOT" loading="lazy">
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">Shadow Bot</h3>
+          <p class="proj-sub">Vehículo teleoperado de inspección con visión artificial</p>
+          <p>Tres nodos Wi-Fi que se descubren solos por UDP, app Flutter con mando DualShock 4 y un servidor YOLO11 que detecta fuego y personas sobre video RTSP y lo devuelve anotado a ~12 fps.</p>
+          <div class="tags"><span>ESP32-S3</span><span>C++</span><span>Python</span><span>YOLO11 · OpenCV</span><span>Flask</span><span>Flutter</span></div>
+          <a class="proj-cta" href="https://gabgari.github.io/SHADOW-BOT/" target="_blank" rel="noopener">Ver Shadow Bot
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="sec" id="stack" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="kicker mono">02 · Stack</p>
+        <h2 class="h2">De la <span class="accent">interfaz</span> al <span class="accent">hardware</span></h2>
+      </div>
+      <p>Cada capa la he llevado a producción o a pruebas reales dentro de mis proyectos.</p>
+    </div>
+    <div class="stack">
+      <div class="layer rv">
+        <div class="layer-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
+        <h3>Frontend y móvil</h3>
+        <p>Apps Android en Flutter con estado, video en vivo y control por mando.</p>
+        <div class="tags"><span>Dart</span><span>Flutter</span><span>HTML/CSS</span></div>
+      </div>
+      <div class="layer rv">
+        <div class="layer-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+        <h3>Backend y datos</h3>
+        <p>APIs REST, Edge Functions con credenciales protegidas y bases vectoriales.</p>
+        <div class="tags"><span>TypeScript</span><span>Supabase</span><span>PostgreSQL</span><span>Flask</span></div>
+      </div>
+      <div class="layer rv">
+        <div class="layer-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.2 5.3L20 9l-4.4 3.8L17 18.5 12 15.6 7 18.5l1.4-5.7L4 9l5.8-.7z"/></svg></div>
+        <h3>IA aplicada</h3>
+        <p>RAG con búsqueda híbrida, prompts y visión artificial en tiempo real.</p>
+        <div class="tags"><span>LLM</span><span>RAG</span><span>Embeddings</span><span>YOLO</span></div>
+      </div>
+      <div class="layer rv">
+        <div class="layer-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></svg></div>
+        <h3>IoT y redes</h3>
+        <p>Firmware para ESP32/ESP8266 y protocolos para comunicar todo.</p>
+        <div class="tags"><span>C++</span><span>TCP/UDP</span><span>RTSP</span><span>I2C</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAYECTORIA -->
+<section class="sec" id="trayectoria" style="padding-top:0">
+  <div class="wrap">
+    <div class="grid3 rv">
+      <div class="cell">
+        <h3>Educación</h3>
+        <div class="edu-item"><b>Licenciatura</b><strong>Ingeniería en Telecomunicaciones</strong><em>2022 – 2027</em><span>Universidad Autónoma del Estado de Hidalgo</span></div>
+        <div class="edu-item"><b>Certificación</b><strong>Networking Basics</strong><em>En curso</em><span>Cisco Networking Academy</span></div>
+        <div class="edu-item"><b>Idiomas</b><strong>Español nativo · Inglés B1</strong><em></em></div>
+      </div>
+      <div class="cell">
+        <h3>Cómo trabajo</h3>
+        <ol class="steps">
+          <li><strong>Entender</strong><span>Quién lo usa y qué problema real resuelve.</span></li>
+          <li><strong>Diseñar</strong><span>Arquitectura, datos y flujo entre capas.</span></li>
+          <li><strong>Construir</strong><span>App, servidor, IA y hardware.</span></li>
+          <li><strong>Validar</strong><span>Pruebas con usuarios y métricas.</span></li>
+          <li><strong>Documentar</strong><span>Manuales, informes y artículos IEEE.</span></li>
+        </ol>
+      </div>
+      <div class="cell quote-cell">
+        <span class="quote-mark">“</span>
+        <blockquote>Mi meta: construirme para ser un ingeniero fullstack.</blockquote>
+        <span class="sign">— A. Gabriel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section class="sec" id="sobre-mi" style="padding-top:0">
+  <div class="wrap about">
+    <div class="about-pics rv">
+      <figure class="pic-a"><img src="img/yo-cdmx.jpg" alt="Gabriel en Ciudad de México" loading="lazy"></figure>
+      <figure class="pic-b"><img src="img/museo.jpg" alt="Gabriel de espaldas en un museo de arte inmersivo" loading="lazy"></figure>
+      <div class="user-tag">
+        <div class="user-icons" aria-hidden="true">
+          <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.2a7.4 7.4 0 0 1-4-1.2v6.3A6 6 0 1 1 10.4 9.3v3.3a2.8 2.8 0 1 0 2.1 2.7V3z"/></svg></span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.5 7h11a4 4 0 0 1 3.9 3.2l1 5.3a2.6 2.6 0 0 1-4.6 2.1L16 15.5H8l-1.8 2.1a2.6 2.6 0 0 1-4.6-2.1l1-5.3A4 4 0 0 1 6.5 7z"/><path d="M8 10v3M6.5 11.5h3"/><circle cx="15.5" cy="10.5" r=".6" fill="currentColor"/><circle cx="17" cy="12.5" r=".6" fill="currentColor"/></svg></span>
+          <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg></span>
+        </div>
+        <p class="user-name"><span class="accent">USER:</span> GABGARI</p>
+        <button class="story-btn" type="button" id="storyOpen">Mi historia
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="about-text rv">
+      <p class="kicker mono">03 · Sobre mí</p>
+      <h2 class="h2" style="margin-bottom:22px">Ingeniería con <span class="accent">criterio de producto</span></h2>
+      <p>Estoy en mi último año de <strong>Ingeniería en Telecomunicaciones</strong> en la UAEH. Mi meta: ser un <strong>ingeniero fullstack</strong>.</p>
+      <p>Me gusta darle seguimiento a cada proyecto: desde la idea y el problema a resolver, pasando por la optimización, hasta las pruebas de satisfacción y usabilidad. Priorizo la seguridad en cada proyecto y documento todo para futuros servicios.</p>
+      <div class="pub">
+        <p class="mono">Publicación · 2026</p>
+        <p><strong>Primer autor.</strong> “Aplicación móvil con inteligencia artificial para la planeación docente alineada al currículo oficial mexicano mediante modelos de lenguaje y RAG”. Boletín Científico INVESTIGIUM, UAEH, Vol. 12, No. Especial.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div class="rv">
+      <p class="kicker mono">04 · Contacto</p>
+      <div class="contact-title"><h2 class="big-cta">Encuéntrame<span class="accent">en línea</span></h2><img class="contact-bot" src="img/bot-recargado.webp" alt="" aria-hidden="true" loading="lazy"></div>
+    </div>
+    <div class="links rv">
+      <a class="link" href="mailto:ga400926@uaeh.edu.mx">
+        <span class="link-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+        <span><small>Correo institucional</small><b>ga400926@uaeh.edu.mx</b></span></a>
+      <a class="link" href="mailto:gabbgari2003@gmail.com">
+        <span class="link-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+        <span><small>Correo personal</small><b>gabbgari2003@gmail.com</b></span></a>
+      <a class="link" href="https://www.linkedin.com/in/angel-gabriel-garcia-rivera-aa9963389/" target="_blank" rel="noopener">
+        <span class="link-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg></span>
+        <span><small>LinkedIn</small><b>Ángel Gabriel García Rivera</b></span></a>
+      <a class="link" href="https://github.com/gabgari" target="_blank" rel="noopener">
+        <span class="link-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg></span>
+        <span><small>GitHub</small><b>github.com/gabgari</b></span></a>
+    </div>
+  </div>
+</section>
+
+
+<dialog class="story" id="story" aria-labelledby="storyTitle">
+  <div class="story-head">
+    <div>
+      <p class="kicker mono" style="color:var(--p);margin-bottom:8px">Por qué me gusta la tecnología</p>
+      <h2 id="storyTitle">Mi historia</h2>
+    </div>
+    <button class="story-close" type="button" id="storyClose" aria-label="Cerrar">×</button>
+  </div>
+  <ol class="timeline">
+    <li><span class="mono">4–5 años</span><h3>El aula de mi mamá</h3><p>Me llevaba a sus cursos de computación porque no tenía con quién dejarme. El profe me prestaba una máquina libre y yo pasaba horas en Paint. Ahí empezó todo.</p></li>
+    <li><span class="mono">Siempre</span><h3>Desarmador oficial</h3><p>Quería saber cómo funcionaban mis juguetes… y casi siempre terminaban rotos.</p></li>
+    <li><span class="mono">10 años</span><h3>Internet en casa</h3><p>Descubrí todo lo que se podía hacer: juegos, descargas y uno que otro virus.</p></li>
+    <li><span class="mono">Primaria</span><h3>El técnico del salón</h3><p>Instalaba y configuraba juegos en el aula de cómputo para jugar con mis compañeros.</p></li>
+    <li><span class="mono">Secundaria</span><h3>Diseño</h3><p>Photoshop y Lightroom: banners, logos y headers.</p></li>
+    <li><span class="mono">Preparatoria</span><h3>La decisión</h3><p>Llegó la pandemia y la orientación vocacional me confirmó que lo mío era la ingeniería.</p></li>
+    <li><span class="mono">UAEH</span><h3>Telecomunicaciones</h3><p>Programación, fibra óptica, antenas, redes y procesamiento digital de señales, más conferencias de IA y ciberseguridad. Cambió mi forma de ver el mundo.</p></li>
+  </ol>
+</dialog>
+
+<script>
+(function(){
+  var top=document.getElementById('top');
+  function onScroll(){top.classList.toggle('solid',window.scrollY>40)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  var burger=document.getElementById('burger');
+  var menu=document.getElementById('mobileMenu');
+  burger.addEventListener('click',function(){
+    var open=document.body.classList.toggle('nav-open');
+    burger.setAttribute('aria-expanded',open);
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){document.body.classList.remove('nav-open');burger.setAttribute('aria-expanded','false')});
+  });
+
+  var story=document.getElementById('story');
+  document.getElementById('storyOpen').addEventListener('click',function(){story.showModal()});
+  document.getElementById('storyClose').addEventListener('click',function(){story.close()});
+  story.addEventListener('click',function(e){if(e.target===story)story.close()});
+
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:.12});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
