@@ -68,7 +68,7 @@ a{color:inherit;text-decoration:none}
 .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;align-items:end;min-height:calc(100vh - 76px);padding-bottom:72px}
 .hello{font:500 clamp(28px,3vw,40px)/1 var(--f-body);font-style:italic;margin-bottom:10px}
 .name{font:400 clamp(54px,6.6vw,104px)/.9 var(--f-big);text-transform:uppercase;letter-spacing:.005em;text-shadow:0 4px 30px rgba(0,0,0,.55)}
-.role{margin:18px 0 14px;font:700 15px/1.3 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--p)}
+.role{margin:18px 0 14px;font:700 15px/1.3 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:#c8ff1f}
 .lead{max-width:400px;color:#cfcad8;font-size:15px;text-shadow:0 2px 12px rgba(0,0,0,.8)}
 .where{display:flex;align-items:center;gap:10px;margin-top:22px;color:var(--muted)}
 .where svg{width:16px;height:16px;color:var(--p)}
@@ -227,6 +227,9 @@ section{position:relative}
 .story-end{padding:80px 0 90px;border-top:1px solid var(--line);text-align:center}
 .story-end blockquote{max-width:760px;margin:0 auto 30px;font:400 clamp(38px,5vw,64px)/1 var(--f-big);text-transform:uppercase}
 
+/* textos largos justificados */
+.ch-body p,.about-text p,.proj-body p,.pub p,.story-intro,.lead,.sec-head p,.layer p,.shot figcaption,.hero-quote{text-align:justify;-webkit-hyphens:auto;hyphens:auto}
+
 /* contacto */
 .contact{position:relative;overflow:hidden;background:var(--bg2);border-top:1px solid var(--line)}
 .contact .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;padding-top:96px;padding-bottom:96px}
@@ -297,10 +300,14 @@ section{position:relative}
   .top .wrap{height:68px}
   .mobile-menu{inset:68px 0 auto}
   .hero{padding-top:68px}
-  .hero .wrap{padding-top:360px}
-  .hero-photo{height:430px;top:80px}
-  .hero::after{top:360px}
-  .ghost{top:100px;font-size:25vw}
+  /* celular: foto sin escritorio, más grande y centrada; GABGARI a todo el ancho detrás de la cabeza */
+  .hero::after{display:none}
+  .ghost{top:calc(68px + 3vw);font-size:26.5vw}
+  .hero-photo{top:calc(68px + 15vw);height:min(132vw,520px);transform:translateX(-50%)}
+  .hero-photo-glow{top:calc(68px + 40vw);width:110vw;height:110vw}
+  .role{max-width:300px}
+  .lead{text-align:left}
+  .hero .wrap{padding-top:calc(15vw + min(132vw,520px) - 96px)}
   .name{font-size:clamp(44px,13.5vw,64px)}
   .stats{grid-template-columns:1fr 1fr 1fr;gap:8px}
   .stat{padding:12px}
@@ -334,9 +341,6 @@ section{position:relative}
 @media (max-width:380px){
   .stats{grid-template-columns:1fr}
   .stat{flex-direction:row;align-items:center}
-  .hero .wrap{padding-top:320px}
-  .hero-photo{height:380px}
-  .hero::after{top:320px}
   .brand span{display:none}
 }
 </style>
@@ -371,7 +375,10 @@ section{position:relative}
 <section class="hero" id="inicio">
   <div class="ghost" aria-hidden="true">GABGARI</div>
   <div class="hero-photo-glow" aria-hidden="true"></div>
-  <img class="hero-photo" src="img/yo.webp" alt="A. Gabriel García Rivera">
+  <picture>
+    <source media="(max-width:640px)" srcset="img/yo-movil.webp">
+    <img class="hero-photo" src="img/yo.webp" alt="A. Gabriel García Rivera">
+  </picture>
   <div class="wrap">
     <div class="hero-left">
       <p class="hello">Hola, soy</p>
