@@ -63,7 +63,7 @@ a{color:inherit;text-decoration:none}
   color:var(--p2);opacity:.92;user-select:none;
   background:linear-gradient(180deg,#a43dff 0%,#7a1fe0 55%,rgba(60,13,120,.25) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
 }
-.hero-photo{position:absolute;z-index:-1;left:50%;bottom:0;transform:translateX(-38%);height:min(88vh,860px);width:auto;max-width:none;filter:grayscale(.15) contrast(1.05)}
+.hero-photo{position:absolute;z-index:-1;left:50%;bottom:0;transform:translateX(-13%);height:min(84vh,680px);width:auto;max-width:none;filter:grayscale(.15) contrast(1.05)}
 .hero-photo-glow{position:absolute;z-index:-2;left:50%;bottom:-10%;transform:translateX(-50%);width:640px;height:640px;border-radius:50%;background:radial-gradient(closest-side,rgba(155,48,255,.35),transparent)}
 .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;align-items:end;min-height:calc(100vh - 76px);padding-bottom:72px}
 .hello{font:500 clamp(28px,3vw,40px)/1 var(--f-body);font-style:italic;margin-bottom:10px}
@@ -243,6 +243,15 @@ section{position:relative}
 
 /* ---------- responsivo ----------
    >1180 escritorio · 901–1180 laptop chica · ≤900 tablet (hero apilado, hamburguesa) · ≤640 celular · ≤380 celular chico */
+/* pantallas medianas: la foto se corre a la derecha y baja de tamaño para no tapar el texto */
+@media (min-width:901px) and (max-width:1320px){
+  .hero-photo{height:min(80vh,640px);transform:translateX(-28%)}
+  .lead,.role{max-width:330px}
+  .name{font-size:clamp(50px,5.6vw,72px)}
+}
+@media (min-width:901px) and (max-width:1050px){
+  .hero-photo{height:min(66vh,500px);transform:translateX(-27%)}
+}
 @media (max-width:1180px){
   .stack{grid-template-columns:1fr 1fr}
   .grid3{grid-template-columns:1fr 1fr}
@@ -256,7 +265,7 @@ section{position:relative}
   .hero{min-height:auto}
   .hero .wrap{grid-template-columns:1fr;min-height:0;padding-top:430px;padding-bottom:40px;gap:30px}
   .ghost{top:110px;font-size:24vw}
-  .hero-photo{height:520px;bottom:auto;top:96px}
+  .hero-photo{height:520px;bottom:auto;top:96px;transform:translateX(-40%)}
   .hero::after{top:440px;height:180px;bottom:auto}
   .hero-photo-glow{top:120px;bottom:auto;width:460px;height:460px}
   .hero-right{justify-self:stretch;align-items:stretch}
