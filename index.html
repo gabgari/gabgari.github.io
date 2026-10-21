@@ -124,7 +124,7 @@ section{position:relative}
 .sec-head .kicker,.about-text .kicker{color:var(--p)}
 .head-bot{flex:none;height:150px;margin:0 0 -20px auto;pointer-events:none}
 
-/* fullstack */
+/* stack */
 .stack{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .layer{padding:26px 24px;background:var(--card);border:1px solid var(--line);border-radius:18px}
 .layer-ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--p);margin-bottom:18px}
@@ -195,10 +195,24 @@ section{position:relative}
 .timeline h3{font:400 24px/1.1 var(--f-big);letter-spacing:.02em;text-transform:uppercase;margin-bottom:6px}
 .timeline p{color:#cfcad8;font-size:15px}
 
+/* álbum */
+.album{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.shot{margin:0;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.shot img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.shot.wide{grid-column:span 2}
+.shot.wide img{aspect-ratio:16/9;object-position:center 40%}
+.shot.tall{grid-row:span 2}
+.shot.tall img{aspect-ratio:auto;flex:1;min-height:0;height:100%;object-position:center 25%}
+.shot figcaption{padding:14px 18px 16px;font-size:14px;color:#cfcad8}
+.shot figcaption b{display:block;color:var(--white);font-size:15px;margin-bottom:2px}
+.designs{display:grid;gap:10px;margin-top:12px}
+.designs img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}
+.designs img.logo-d{width:min(100%,340px)}
+
 /* contacto */
 .contact{position:relative;overflow:hidden;background:var(--bg2);border-top:1px solid var(--line)}
 .contact .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;padding-top:96px;padding-bottom:96px}
-.big-cta{font:400 clamp(52px,7vw,110px)/.88 var(--f-big);text-transform:uppercase}
+.big-cta{font:400 clamp(52px,6.4vw,88px)/.88 var(--f-big);text-transform:uppercase}
 .big-cta .accent{display:block}
 .contact-lead{margin:20px 0 0;max-width:430px;color:var(--muted)}
 .links{display:grid;gap:12px;position:relative;z-index:1}
@@ -208,8 +222,8 @@ section{position:relative}
 .link-ico svg{width:20px;height:20px}
 .link small{display:block;color:var(--dim);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
 .link b{font-weight:600;font-size:15px;word-break:break-all}
-.contact-title{display:flex;align-items:flex-end;gap:18px}
-.contact-bot{flex:none;height:250px;width:auto;margin-bottom:-6px;pointer-events:none}
+/* el robot se recarga en las tarjetas: hombro contra el borde izquierdo, pies en el piso de la columna */
+.contact-bot{position:absolute;right:calc(100% - 14px);bottom:-2px;height:300px;width:auto;z-index:-1;pointer-events:none}
 
 /* entrada suave */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
@@ -242,6 +256,9 @@ section{position:relative}
   .projects{grid-template-columns:1fr}
   .head-bot{display:none}
   .about{grid-template-columns:1fr}
+  .album{grid-template-columns:1fr 1fr}
+  .shot.tall{grid-row:auto}
+  .shot.tall img{aspect-ratio:4/3;height:auto}
   .about-pics{height:540px}
   .contact .wrap{grid-template-columns:1fr}
   .sec{padding:84px 0}
@@ -261,7 +278,9 @@ section{position:relative}
   .stat strong{font-size:30px}
   .stat span{font-size:10px;letter-spacing:.08em}
   .sec-head{flex-direction:column;align-items:flex-start}
-  .stack,.grid3{grid-template-columns:1fr}
+  .stack,.grid3,.album{grid-template-columns:1fr}
+  .shot.wide{grid-column:auto}
+  .shot.wide img{aspect-ratio:4/3}
   .cell{border-right:0;border-bottom:1px solid var(--line);padding:28px 22px}
   .proj-media{height:280px}
   .proj-body{padding:24px 20px 22px}
@@ -272,7 +291,8 @@ section{position:relative}
   .timeline{padding:22px 20px 28px}
   .story-btn{padding:10px 14px;font-size:13px}
   .user-name{font-size:21px}
-  .contact-bot{height:170px}
+  .links{margin-top:120px}
+  .contact-bot{right:14px;bottom:calc(100% - 4px);height:150px}
   .user-icons span{width:30px;height:30px}
   .edu-item{grid-template-columns:1fr}
   .edu-item em{grid-column:1/-1}
@@ -297,6 +317,7 @@ section{position:relative}
       <a href="#stack">Stack</a>
       <a href="#trayectoria">Trayectoria</a>
       <a href="#sobre-mi">Sobre mí</a>
+      <a href="#album">Álbum</a>
       <a href="#contacto">Contacto</a>
     </nav>
     <div class="status mono"><i></i>UAEH · Hidalgo</div>
@@ -308,6 +329,7 @@ section{position:relative}
   <a href="#stack">Stack</a>
   <a href="#trayectoria">Trayectoria</a>
   <a href="#sobre-mi">Sobre mí</a>
+  <a href="#album">Álbum</a>
   <a href="#contacto">Contacto</a>
 </nav>
 
@@ -450,7 +472,7 @@ section{position:relative}
       </div>
       <div class="cell quote-cell">
         <span class="quote-mark">“</span>
-        <blockquote>Mi meta: construirme para ser un ingeniero fullstack.</blockquote>
+        <blockquote>Cada día se debe aprender algo nuevo.</blockquote>
         <span class="sign">— A. Gabriel</span>
       </div>
     </div>
@@ -461,7 +483,7 @@ section{position:relative}
 <section class="sec" id="sobre-mi" style="padding-top:0">
   <div class="wrap about">
     <div class="about-pics rv">
-      <figure class="pic-a"><img src="img/yo-cdmx.jpg" alt="Gabriel en Ciudad de México" loading="lazy"></figure>
+      <figure class="pic-a"><img src="img/yo-antena.jpg" alt="Gabriel junto a una antena parabólica en la UAEH" loading="lazy"></figure>
       <figure class="pic-b"><img src="img/museo.jpg" alt="Gabriel de espaldas en un museo de arte inmersivo" loading="lazy"></figure>
       <div class="user-tag">
         <div class="user-icons" aria-hidden="true">
@@ -478,7 +500,7 @@ section{position:relative}
     <div class="about-text rv">
       <p class="kicker mono">03 · Sobre mí</p>
       <h2 class="h2" style="margin-bottom:22px">Ingeniería con <span class="accent">criterio de producto</span></h2>
-      <p>Estoy en mi último año de <strong>Ingeniería en Telecomunicaciones</strong> en la UAEH. Mi meta: ser un <strong>ingeniero fullstack</strong>.</p>
+      <p>Estoy en mi último año de <strong>Ingeniería en Telecomunicaciones</strong> en la UAEH.</p>
       <p>Me gusta darle seguimiento a cada proyecto: desde la idea y el problema a resolver, pasando por la optimización, hasta las pruebas de satisfacción y usabilidad. Priorizo la seguridad en cada proyecto y documento todo para futuros servicios.</p>
       <div class="pub">
         <p class="mono">Publicación · 2026</p>
@@ -488,14 +510,38 @@ section{position:relative}
   </div>
 </section>
 
+<!-- ÁLBUM -->
+<section class="sec" id="album" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <p class="kicker mono">04 · Álbum</p>
+        <h2 class="h2">En <span class="accent">campo</span> y en el <span class="accent">laboratorio</span></h2>
+      </div>
+      <p>Proyectos, prácticas y el equipo de telecomunicaciones con el que he trabajado.</p>
+    </div>
+    <div class="album">
+      <figure class="shot wide rv"><img src="img/submarino-lora.jpg" alt="Equipo con el submarino RC en una exposición" loading="lazy">
+        <figcaption><b>Submarino RC con LoRa</b>Exposición de proyecto en equipo. Mi parte: integrar el GPS para su geolocalización.</figcaption></figure>
+      <figure class="shot tall rv"><img src="img/gps-autobus.jpg" alt="Gabriel instalando un GPS en un autobús" loading="lazy">
+        <figcaption><b>GPS en autobuses de la UAEH</b>Instalación en el tablero eléctrico de la unidad.</figcaption></figure>
+      <figure class="shot rv"><img src="img/osciloscopio.jpg" alt="Osciloscopio Rohde &amp; Schwarz RTE 1102 midiendo señales" loading="lazy">
+        <figcaption><b>Osciloscopio R&amp;S RTE 1102</b>1 GHz · 5 GSa/s, sobre un analizador de señales R&amp;S FSV.</figcaption></figure>
+      <figure class="shot rv"><img src="img/analizador-espectro.jpg" alt="Analizador de espectro portátil Rohde &amp; Schwarz FSH4" loading="lazy">
+        <figcaption><b>Analizador de espectro R&amp;S FSH4</b>Portátil, de 100 kHz a 3.6 GHz.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACTO -->
 <section class="contact" id="contacto">
   <div class="wrap">
     <div class="rv">
-      <p class="kicker mono">04 · Contacto</p>
-      <div class="contact-title"><h2 class="big-cta">Encuéntrame<span class="accent">en línea</span></h2><img class="contact-bot" src="img/bot-recargado.webp" alt="" aria-hidden="true" loading="lazy"></div>
+      <p class="kicker mono">05 · Contacto</p>
+      <h2 class="big-cta">Encuéntrame<span class="accent">en línea</span></h2>
     </div>
     <div class="links rv">
+      <img class="contact-bot" src="img/bot-recargado.webp" alt="" aria-hidden="true" loading="lazy">
       <a class="link" href="mailto:ga400926@uaeh.edu.mx">
         <span class="link-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
         <span><small>Correo institucional</small><b>ga400926@uaeh.edu.mx</b></span></a>
@@ -526,7 +572,13 @@ section{position:relative}
     <li><span class="mono">Siempre</span><h3>Desarmador oficial</h3><p>Quería saber cómo funcionaban mis juguetes… y casi siempre terminaban rotos.</p></li>
     <li><span class="mono">10 años</span><h3>Internet en casa</h3><p>Descubrí todo lo que se podía hacer: juegos, descargas y uno que otro virus.</p></li>
     <li><span class="mono">Primaria</span><h3>El técnico del salón</h3><p>Instalaba y configuraba juegos en el aula de cómputo para jugar con mis compañeros.</p></li>
-    <li><span class="mono">Secundaria</span><h3>Diseño</h3><p>Photoshop y Lightroom: banners, logos y headers.</p></li>
+    <li><span class="mono">Secundaria</span><h3>Diseño</h3><p>Photoshop y Lightroom: banners, logos y headers.</p>
+      <div class="designs">
+        <img class="logo-d" src="img/diseno-casco.jpg" alt="Logo de casco con variantes de color" loading="lazy">
+        <img src="img/diseno-header-zxur.jpg" alt="Header morado con tipografía gótica" loading="lazy">
+        <img src="img/diseno-header-gab.jpg" alt="Header GAB en rojo y negro" loading="lazy">
+        <img src="img/diseno-header-coc.jpg" alt="Header con personajes de Clash of Clans" loading="lazy">
+      </div></li>
     <li><span class="mono">Preparatoria</span><h3>La decisión</h3><p>Llegó la pandemia y la orientación vocacional me confirmó que lo mío era la ingeniería.</p></li>
     <li><span class="mono">UAEH</span><h3>Telecomunicaciones</h3><p>Programación, fibra óptica, antenas, redes y procesamiento digital de señales, más conferencias de IA y ciberseguridad. Cambió mi forma de ver el mundo.</p></li>
   </ol>
