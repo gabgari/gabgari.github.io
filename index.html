@@ -241,8 +241,8 @@ section{position:relative}
 
 /* contacto */
 .contact{position:relative;overflow:hidden;background:var(--bg2);border-top:1px solid var(--line)}
-.contact .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;padding-top:96px;padding-bottom:96px}
-.big-cta{font:400 clamp(52px,6.4vw,88px)/.88 var(--f-big);text-transform:uppercase}
+.contact .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:end;padding-top:96px;padding-bottom:96px}
+.big-cta{font:400 clamp(52px,7vw,110px)/.88 var(--f-big);text-transform:uppercase}
 .big-cta .accent{display:block}
 .contact-lead{margin:20px 0 0;max-width:430px;color:var(--muted)}
 .links{display:grid;gap:12px;position:relative;z-index:1}
@@ -254,9 +254,9 @@ section{position:relative}
 .link b{font-weight:600;font-size:15px;word-break:break-all}
 /* el robot se recarga en las tarjetas: hombro contra el borde izquierdo, pies en el piso de la columna */
 /* escena: el robot recargado en un rack de telecom dibujado con trazo blanco */
-.scene{display:flex;align-items:flex-end;margin-top:34px;pointer-events:none}
-.scene-bot{height:230px;width:auto;position:relative;z-index:1}
-.scene-rack{height:300px;width:auto;margin-left:-16px;opacity:.92}
+.scene{display:flex;align-items:flex-end;justify-content:center;margin-top:26px;pointer-events:none}
+.scene-bot{height:250px;width:auto;position:relative;z-index:1}
+.scene-rack{height:330px;width:auto;margin-left:-18px;opacity:.92}
 
 /* entrada suave */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
@@ -347,7 +347,7 @@ section{position:relative}
   .designs{max-width:320px}
   .gal.two .shot img{aspect-ratio:4/3;height:auto}
   .user-name{font-size:21px}
-  .scene{margin-top:26px}
+  .scene{margin-top:26px;justify-content:flex-start}
   .scene-bot{height:170px}
   .scene-rack{height:222px;margin-left:-12px}
   .user-icons span{width:30px;height:30px}
