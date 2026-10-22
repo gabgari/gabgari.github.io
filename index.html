@@ -223,9 +223,9 @@ section{position:relative}
 .ch-ico{grid-column:2;grid-row:1/span 2;width:150px;height:150px;border-radius:28px;display:grid;place-items:center;background:linear-gradient(150deg,var(--p2),var(--p-deep));box-shadow:0 24px 60px -24px rgba(155,48,255,.7)}
 .ch-ico svg{width:64px;height:64px;color:#fff}
 .ch-media{grid-column:1/-1}
-.designs{display:grid;grid-template-columns:.75fr 1.25fr;gap:12px;margin-top:6px}
-.designs img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
-.designs .stack-d{display:grid;gap:12px;align-content:start}
+.designs{display:grid;grid-template-columns:.6fr 1.4fr;gap:8px;margin-top:6px;max-width:440px}
+.designs img{width:100%;height:auto;border-radius:8px;border:1px solid var(--line);opacity:.9}
+.designs .stack-d{display:grid;gap:8px;align-content:start}
 .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .gal.two{grid-template-columns:1.5fr 1fr}
 .shot{margin:0;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
@@ -340,7 +340,8 @@ section{position:relative}
   .ch-body h3,.ch-body p{grid-column:1}
   .ch-ico{grid-column:1;grid-row:auto;width:88px;height:88px;border-radius:20px;order:-1}
   .ch-ico svg{width:40px;height:40px}
-  .gal,.gal.two,.designs{grid-template-columns:1fr}
+  .gal,.gal.two{grid-template-columns:1fr}
+  .designs{max-width:320px}
   .gal.two .shot img{aspect-ratio:4/3;height:auto}
   .user-name{font-size:21px}
   .links{margin-top:120px}
