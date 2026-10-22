@@ -254,9 +254,20 @@ section{position:relative}
 .link b{font-weight:600;font-size:15px;word-break:break-all}
 /* el robot se recarga en las tarjetas: hombro contra el borde izquierdo, pies en el piso de la columna */
 /* escena: el robot recargado en un rack de telecom dibujado con trazo blanco */
-.scene{display:flex;align-items:flex-end;justify-content:center;margin-top:26px;pointer-events:none}
+.scene{position:relative;width:360px;height:340px;margin:26px auto 0;pointer-events:none}
+.scene-a,.scene-b{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
 .scene-bot{height:250px;width:auto;position:relative;z-index:1}
 .scene-rack{height:330px;width:auto;margin-left:-18px;opacity:.92}
+.scene-b{opacity:0}
+.scene-torres{position:absolute;right:0;bottom:0;height:100%;width:auto}
+.scene-acro{position:absolute;left:0;bottom:0;height:215px;width:auto;z-index:1}
+/* recargado 2 s → acrobacia con torres 2 s → regresa (ciclo de 5 s con fundidos) */
+.scene-a{animation:sceneA 5s ease-in-out infinite}
+.scene-b{animation:sceneB 5s ease-in-out infinite}
+.scene-b .scene-acro{animation:acro 5s ease-in-out infinite}
+@keyframes sceneA{0%,40%{opacity:1}50%,90%{opacity:0}100%{opacity:1}}
+@keyframes sceneB{0%,40%{opacity:0}50%,90%{opacity:1}100%{opacity:0}}
+@keyframes acro{0%,40%{transform:translateY(14px) rotate(-6deg)}55%{transform:translateY(-6px) rotate(2deg)}65%,90%{transform:none}100%{transform:translateY(14px) rotate(-6deg)}}
 
 /* entrada suave */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
@@ -347,9 +358,11 @@ section{position:relative}
   .designs{max-width:320px}
   .gal.two .shot img{aspect-ratio:4/3;height:auto}
   .user-name{font-size:21px}
-  .scene{margin-top:26px;justify-content:flex-start}
+  .scene{width:260px;height:236px;margin:26px 0 0}
+  .scene-a{justify-content:flex-start}
   .scene-bot{height:170px}
   .scene-rack{height:222px;margin-left:-12px}
+  .scene-acro{height:150px}
   .user-icons span{width:30px;height:30px}
   .edu-item{grid-template-columns:1fr}
   .edu-item em{grid-column:1/-1}
@@ -577,7 +590,10 @@ section{position:relative}
     <div class="rv">
       <p class="kicker mono">04 · Contacto</p>
       <h2 class="big-cta">Encuéntrame<span class="accent">en línea</span></h2>
-      <div class="scene" aria-hidden="true"><img class="scene-bot" src="img/bot-recargado.webp" alt="" loading="lazy"><img class="scene-rack" src="img/rack.webp" alt="" loading="lazy"></div>
+      <div class="scene" aria-hidden="true">
+        <div class="scene-a"><img class="scene-bot" src="img/bot-recargado.webp" alt="" loading="lazy"><img class="scene-rack" src="img/rack.webp" alt="" loading="lazy"></div>
+        <div class="scene-b"><img class="scene-torres" src="img/torres.webp" alt="" loading="lazy"><img class="scene-acro" src="img/bot-acrobacia.webp" alt="" loading="lazy"></div>
+      </div>
     </div>
     <div class="links rv">
       <a class="link" href="mailto:ga400926@uaeh.edu.mx">
